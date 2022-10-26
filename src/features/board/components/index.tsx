@@ -4,8 +4,9 @@ import { Board } from 'tictactoe-game-modules';
 import { RootState } from 'store';
 import { useClient } from 'features/client';
 import { saveBoard, IBoard } from '../models';
-import { Caption, Centered } from 'ui';
+import { Button, Caption, Centered } from 'ui';
 import { Grid, GridCell } from '../ui';
+import { useStart } from '../lib';
 
 interface BoardProps {
   id: string;
@@ -23,6 +24,8 @@ export const GameBoard: FC<BoardProps> = ({ id }) => {
   const grid = useSelector<RootState, string[] | null>(
     (state) => state.board[id],
   );
+
+  const start = useStart();
 
   useEffect(() => {
     const listener = (board: IBoard) => {
@@ -99,7 +102,10 @@ export const GameBoard: FC<BoardProps> = ({ id }) => {
           </GridCell>
         ))}
       </Grid>
-      <Centered position={'absolute'} mt={20}>
+      <Centered position={'absolute'} mt={40}>
+        <Button onClick={start} mb={10}>
+          Новая игра
+        </Button>
         {result}
       </Centered>
     </>

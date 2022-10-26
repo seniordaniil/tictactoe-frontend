@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import { space, SpaceProps } from 'styled-system';
 
-export const Button = styled.button`
+export const Button = styled.button<SpaceProps>`
+  ${space};
   padding: 4px 8px;
   border-radius: 4px;
   background-color: #0da192;
